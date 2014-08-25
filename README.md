@@ -3,8 +3,8 @@ i-am-here-server
 
 The server-side component for the "I am here" app. 
 It is designed to interact with an "I am here" mobile app 
-and track the number of people currently present at the Cornell Tech campus.
-It uses an Occupancy model to track the occupancy of a place. An occupancy instance contains:
+and track the number of people who currently present at the Cornell Tech campus.
+It uses an Occupancy model to track the occupancy. An occupancy instance contains:
 
     1. id
     2. the occupant's name 
