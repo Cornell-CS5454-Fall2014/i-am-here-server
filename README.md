@@ -31,12 +31,12 @@ The following Web APIs are implemented:
     ```json
     [ { "arrive" : "2014-08-25T00:24:01.453Z",
         "depart" : "2014-08-25T00:29:36.590Z",
-        "name" : "andy",
+        "name" : "Andy Hsieh",
         "update" : "2014-08-25T00:31:01.140Z"
       },
       { "arrive" : "2014-08-25T01:18:32.405Z",
         "depart" : null,
-        "name" : null,
+        "name" : "Faisal Alquaddoomi",
         "update" : "2014-08-25T01:18:32.406Z"
       }
     ]
