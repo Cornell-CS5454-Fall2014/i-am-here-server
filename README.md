@@ -41,7 +41,7 @@ The following Web APIs are implemented:
       }
     ]
     ```    
-* **POST** /occupancy parameter  (required parameter: name)
+* **POST** /occupancy parameter  (required parameter: **name**)
     - Submit a new occupancy entry. 
     - Return the newly created occupancy entry with its id. E.g.:
     
