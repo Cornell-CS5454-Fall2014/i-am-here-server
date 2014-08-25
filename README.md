@@ -4,7 +4,7 @@ i-am-here-server
 The server-side component for the "I am here" app. 
 It is designed to interact with an "I am here" mobile app 
 and track the number of people who currently present at the Cornell Tech campus.
-It uses an Occupancy model to track the occupancy. An occupancy instance contains:
+It uses an Occupancy model to track the occupancy. An occupancy entry contains:
 
     1. id
     2. the occupant's name 
@@ -55,11 +55,11 @@ The following Web APIs are implemented:
     ``` 
     
 * **PUT** /occupancy/*:id*/update
-    - Update an occupancy entry. The *:id* segment of the URI must be the id of valid occupancy entry.
+    - Update an occupancy entry. The *:id* segment of the URI must be the id of a valid occupancy entry.
     - An entry that does not get updated for more than 30 minutes will be considered to have already departed the place.
     - Return "Succeed", or 404 when the given id is invalid.    
 * **PUT** /occupancy/*:id*/depart
-    - Set an occupancy entry to be "departed". The *:id* segment of the URI must be the id of valid occupancy entry.
+    - Set an occupancy entry to be "departed". The *:id* segment of the URI must be the id of a valid occupancy entry.
     - Return "Succeed", or 404 when the given id is invalid.   
 * **GET** /history
     - Return all occupancy entries.
@@ -68,9 +68,9 @@ The following Web APIs are implemented:
 
 An "I am here" mobile app is responsible to submit an occupancy entry when the user enters Cornell Tech, 
 and update it at least every 30 minutes when the user still is at the place. 
-When the user leaves Cornell Tech, the app should set the entry to "departed."
+When the user leaves Cornell Tech, the app should set the entry to be "departed."
   
 # TODO
 
-* Do not return id's in the GET occupancy and GET /history APIs.
+* Do not return id's in the GET /occupancy and GET /history APIs.
 * Allow uploading profile images.
