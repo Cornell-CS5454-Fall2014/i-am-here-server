@@ -4,7 +4,7 @@ i-am-here-server
 The server-side component for the "I am here" app. 
 It is designed to interact with an "I am here" mobile app 
 and track the number of people who currently present at the Cornell Tech campus.
-It uses an Occupancy model to track the occupancy. An occupancy entry contains:
+It uses an Occupancy model to track occupants. An occupancy entry contains:
 
     1. id
     2. the occupant's name 
@@ -41,14 +41,14 @@ The following Web APIs are implemented:
       }
     ]
     ```    
-* **POST** /occupancy parameter  (required parameter: **name**)
+* **POST** /occupancy (required parameter: **name**)
     - Submit a new occupancy entry. 
-    - Return the newly created occupancy entry with its id. E.g.:
+    - Return the newly created occupancy entry with its id, which is required when updating the entry E.g.:
     
     ```json
-    { "arrive" : "2014-08-25T19:07:46.146Z",
+    { "id" : 48,
+      "arrive" : "2014-08-25T19:07:46.146Z",
       "depart" : null,
-      "id" : 48,
       "name" : "Andy Hsieh",
       "update" : "2014-08-25T19:07:46.146Z"
     }
