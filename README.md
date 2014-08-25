@@ -1,19 +1,4 @@
-# i-am-here
+i-am-here-server
+================
 
-FIXME
-
-## Prerequisites
-
-You will need [Leiningen][1] 1.7.0 or above installed.
-
-[1]: https://github.com/technomancy/leiningen
-
-## Running
-
-To start a web server for the application, run:
-
-    lein ring server
-
-## License
-
-Copyright © 2014 FIXME
+This repo is the server-side component for "I am here" app, which tracks the number of people present at the Cornell Tech campus.
