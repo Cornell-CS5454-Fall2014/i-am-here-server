@@ -74,7 +74,7 @@ When the user leaves Cornell Tech, the app should set the entry to be "departed.
 
 In a nutshell, an app should implement the following Finite State Machine:
 
-![alt text](https://github.com/Cornell-CS5454-Fall2014/i-am-here-server/blob/master/resources/public/FSM.png "I am here" app FSM.)
+![alt text](https://github.com/Cornell-CS5454-Fall2014/i-am-here-server/blob/master/resources/public/FSM.png "I am here app FSM")
 
 
 
