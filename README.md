@@ -69,9 +69,15 @@ The following Web APIs are implemented:
 # What an "I am here" mobile app should do?
 
 An "I am here" mobile app is responsible to submit an occupancy entry when the user enters Cornell Tech, 
-and update it at least every 30 minutes while the user stay at Cornell Tech. 
+and update it at least every 30 minutes while the user stays at Cornell Tech. 
 When the user leaves Cornell Tech, the app should set the entry to be "departed."
-  
+
+In a nutshell, an app should implement the following Finite State Machine:
+
+![alt text](https://github.com/Cornell-CS5454-Fall2014/i-am-here-server/blob/master/resources/public/FSM.png "I am here" app FSM.)
+
+
+
 # TODO
 
 * Do not return id's in the GET /occupancy and GET /history APIs.
