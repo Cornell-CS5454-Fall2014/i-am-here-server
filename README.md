@@ -41,9 +41,9 @@ The following Web APIs are implemented:
       }
     ]
     ```    
-* **POST** /occupancy (required parameter: **name**)
-    - Submit a new occupancy entry. 
-    - Return the newly created occupancy entry with its id, which is required when updating the entry E.g.:
+* **POST** /occupancy (required parameter: **name**, optional parameter: **image-b64**)
+    - Submit a new occupancy entry with name and optionally a profile image encoded in Base64 format. 
+    - Return the newly created occupancy entry along with its id, which is required when updating the entry E.g.:
     
     ```json
     { "id" : 48,
@@ -57,20 +57,22 @@ The following Web APIs are implemented:
 * **PUT** /occupancy/*:id*/update
     - Update an occupancy entry. The *:id* segment of the URI must be the id of a valid occupancy entry.
     - An entry that does not get updated for more than 30 minutes will be considered to have already departed the place.
-    - Return "Succeed", or 404 when the given id is invalid.    
+    - Return "Succeed!", or 404 when the given id is invalid.    
 * **PUT** /occupancy/*:id*/depart
     - Set an occupancy entry to be "departed". The *:id* segment of the URI must be the id of a valid occupancy entry.
-    - Return "Succeed", or 404 when the given id is invalid.   
+    - Return "Succeed!", or 404 when the given id is invalid.   
 * **GET** /history
     - Return all occupancy entries.
+* **GET** /image/*:id:*
+    - Return the image of the given image id. The returned content-type is "image/jpeg"
     
 # What an "I am here" mobile app should do?
 
 An "I am here" mobile app is responsible to submit an occupancy entry when the user enters Cornell Tech, 
-and update it at least every 30 minutes when the user still is at the place. 
+and update it at least every 30 minutes while the user stay at Cornell Tech. 
 When the user leaves Cornell Tech, the app should set the entry to be "departed."
   
 # TODO
 
 * Do not return id's in the GET /occupancy and GET /history APIs.
-* Allow uploading profile images.
+* ~~Allow uploading profile images.~~
