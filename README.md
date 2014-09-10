@@ -67,7 +67,7 @@ The following Web APIs are implemented:
 * **GET** /image/*:id:*
     - Return the image of the given image id. The returned content-type is "image/jpeg"
     
-*(I made a mistake in using PUT method for updates. The POST method is more appropriate for this scenario (see [explanation](http://stackoverflow.com/questions/630453/put-vs-post-in-rest)). For consistency, both POST and PUT are supported.)*
+*(I made a mistake in using PUT method for updates. The POST method is more appropriate for this scenario (see [explanation](http://stackoverflow.com/questions/630453/put-vs-post-in-rest)). For consistency, however, both POST and PUT are supported.)*
 # What an "I am here" mobile app should do?
 
 An "I am here" mobile app is responsible to submit an occupancy entry when the user enters Cornell Tech, 
