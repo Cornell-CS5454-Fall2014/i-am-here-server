@@ -50,7 +50,7 @@ The following Web APIs are implemented:
       "arrive" : "2014-08-25T19:07:46.146Z",
       "depart" : null,
       "name" : "Andy Hsieh",
-      "floor": "3rd"
+      "floor": "3rd",
       "update" : "2014-08-25T19:07:46.146Z"
     }
     ``` 
