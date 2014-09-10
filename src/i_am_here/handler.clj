@@ -29,6 +29,7 @@
 (def occupancy-table-sql "CREATE TABLE IF NOT EXISTS occupancy(
                 id BIGINT PRIMARY KEY AUTO_INCREMENT NOT NULL,
                 name VARCHAR,
+                floor VARCHAR,
                 arrive DATETIME NOT NULL,
                 update DATETIME NOT NULL,
                 depart DATETIME,
@@ -64,7 +65,7 @@
            )
 (defentity occupancy
            (pk :id)
-           (entity-fields :id :name :arrive :update :depart :image_id)
+           (entity-fields :id :name :floor :arrive :update :depart :image_id)
            ; convert joda time to sql time (and vice versa)
            (prepare (apply-to-keys coerce/to-sql-time [:arrive :update :depart]))
            (transform (apply-to-keys coerce/from-sql-time [:arrive :update :depart]))
@@ -78,7 +79,7 @@
 
 ; the where clause for checking the presence of an occupancy entry.
 ; An entry is considered to be present if the dpart = null and
-; the last update time is no more than 30 minutes before the current time
+; the last update time is no more than 30 minutes ago
 (defn presence-clause [query] (where query { :depart [= nil]
                                              :update [> (coerce/to-sql-time (t/minus (t/now) timeout))]}))
 
@@ -115,7 +116,7 @@
   ; an optional profile image (encoded in Base64), set the
   ; arrival time and update time as the current time, and return
   ; the newly created entry.
-  (POST "/occupancy" [name image-b64] (if-not name
+  (POST "/occupancy" [name image-b64 floor] (if-not name
                               {:status 400
                                :body "required parameter: name is missing!"}
 
@@ -126,7 +127,9 @@
                                                   (id (insert image (values {:b64 image-b64})))))
 
                                      new-id (id (insert occupancy  ; insert the new occupancy entry and get the id
-                                                        (values {:name name :arrive (t/now) :update (t/now) :image_id image-id})))]
+                                                        (values {:name name :floor floor
+                                                                 :arrive (t/now) :update (t/now)
+                                                                 :image_id image-id})))]
                                 ; return the newly created occupancy entry
                                 {:body (first
                                          (select occupancy
@@ -134,11 +137,11 @@
                                 )))
   ; update the update time of the entry with the given id
   ; return "Succeed!", or 404 if the entry does not exist or has departed
-  (PUT "/occupancy/:key/update" [key] (check-existence-then
+  (PUT "/occupancy/:key/update" [key floor] (check-existence-then
                                         key
                                         #(do
                                           (update occupancy
-                                                  (set-fields {:update (t/now)})
+                                                  (set-fields {:update (t/now) :floor floor})
                                                   (where {:id key}))
                                           (identity "Succeed!"))))
   ; set the departue time time of the entry of the given id

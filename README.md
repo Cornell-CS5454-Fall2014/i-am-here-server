@@ -41,8 +41,8 @@ The following Web APIs are implemented:
       }
     ]
     ```    
-* **POST** /occupancy (required parameter: **name**, optional parameter: **image-b64**)
-    - Submit a new occupancy entry with name and optionally a profile image encoded in Base64 format. 
+* **POST** /occupancy (required parameter: **name**, optional parameter: **image-b64**, and **floor**)
+    - Submit a new occupancy entry with name, and optionally a profile image encoded in Base64 format and the name of the floor the user stays. 
     - Return the newly created occupancy entry along with its id, which is required when updating the entry E.g.:
     
     ```json
@@ -50,12 +50,13 @@ The following Web APIs are implemented:
       "arrive" : "2014-08-25T19:07:46.146Z",
       "depart" : null,
       "name" : "Andy Hsieh",
+      "floor": "3rd"
       "update" : "2014-08-25T19:07:46.146Z"
     }
     ``` 
     
-* **PUT** /occupancy/*:id*/update
-    - Update an occupancy entry. The *:id* segment of the URI must be the id of a valid occupancy entry.
+* **PUT** /occupancy/*:id*/update (optional parameter: **floor**)
+    - Update an occupancy entry. The *:id* segment of the URI must be the id of a valid occupancy entry. You can also update the floor if it has changed.
     - An entry that does not get updated for more than 30 minutes will be considered to have already departed the place.
     - Return "Succeed!", or 404 when the given id is invalid.    
 * **PUT** /occupancy/*:id*/depart

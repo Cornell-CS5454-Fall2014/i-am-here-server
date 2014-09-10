@@ -9,7 +9,8 @@
                  [ring/ring-json "0.3.1"]]
   :plugins [[lein-ring "0.8.11"]]
   :ring {:handler i-am-here.handler/app
-         :init i-am-here.handler/init}
+         :init i-am-here.handler/init
+         :port 8080}
   :profiles
   {:dev {:dependencies [
                         [javax.servlet/servlet-api "2.5"]
