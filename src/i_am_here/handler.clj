@@ -144,9 +144,24 @@
                                                   (set-fields {:update (t/now) :floor floor})
                                                   (where {:id key}))
                                           (identity "Succeed!"))))
-  ; set the departue time time of the entry of the given id
+  (POST "/occupancy/:key/update" [key floor] (check-existence-then
+                                              key
+                                              #(do
+                                                (update occupancy
+                                                        (set-fields {:update (t/now) :floor floor})
+                                                        (where {:id key}))
+                                                (identity "Succeed!"))))
+
+  ; set the departure time time of the entry of the given id
   ; return "Succeed!", or 404 if the entry does not exisit or has departed
   (PUT "/occupancy/:key/depart" [key] (check-existence-then
+                                        key
+                                        #(do
+                                          (update occupancy
+                                                  (set-fields {:depart (t/now)})
+                                                  (where {:id key}))
+                                          (identity "Succeed!"))))
+  (POST "/occupancy/:key/depart" [key] (check-existence-then
                                         key
                                         #(do
                                           (update occupancy

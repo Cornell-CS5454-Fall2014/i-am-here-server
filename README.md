@@ -55,11 +55,11 @@ The following Web APIs are implemented:
     }
     ``` 
     
-* **PUT** /occupancy/*:id*/update (optional parameter: **floor**)
+* **POST** (or **PUT**) /occupancy/*:id*/update (optional parameter: **floor**)
     - Update an occupancy entry. The *:id* segment of the URI must be the id of a valid occupancy entry. You can also update the floor if it has changed.
     - An entry that does not get updated for more than 30 minutes will be considered to have already departed the place.
     - Return "Succeed!", or 404 when the given id is invalid.    
-* **PUT** /occupancy/*:id*/depart
+* **POST** (or **PUT**) /occupancy/*:id*/depart
     - Set an occupancy entry to be "departed". The *:id* segment of the URI must be the id of a valid occupancy entry.
     - Return "Succeed!", or 404 when the given id is invalid.   
 * **GET** /history
@@ -67,6 +67,7 @@ The following Web APIs are implemented:
 * **GET** /image/*:id:*
     - Return the image of the given image id. The returned content-type is "image/jpeg"
     
+*(I made a mistake in using PUT method for updates. The POST method is more appropriate for this scenario (see [explanation](http://stackoverflow.com/questions/630453/put-vs-post-in-rest)). For consistency, both POST and PUT are supported.)*
 # What an "I am here" mobile app should do?
 
 An "I am here" mobile app is responsible to submit an occupancy entry when the user enters Cornell Tech, 
